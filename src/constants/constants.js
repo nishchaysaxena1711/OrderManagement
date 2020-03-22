@@ -1,15 +1,28 @@
-export const CounterTypes = [
+export const DISHES = [
     {
-        key: "rooms",
-        id: "1",
-        value: "ROOMS"
+        key: "first",
+        name: "Roti",
+        price: 20,
+        time: "2"
     }, {
-        key: "adults",
-        id: "2",
-        value: "ADULTS"
+        key: "second",
+        name: "Rice",
+        price: 30,
+        time: "3"
     }, {
-        key: "children",
-        id: "3",
-        value: "CHILDREN"
+        key: "third",
+        name: "Dal",
+        price: 20,
+        time: "2"
+    }, {
+        key: "fourth",
+        name: "Paneer",
+        price: 25,
+        time: "4"
+    }, {
+        key: "fifth",
+        name: "Chicken",
+        price: 40,
+        time: "5"
     }
 ];

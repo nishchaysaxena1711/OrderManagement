@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';		
+import styled from 'styled-components';
+import { connect } from 'react-redux';
 
 class OrderDashboard extends Component {
 	constructor() {
@@ -15,4 +16,10 @@ class OrderDashboard extends Component {
 	}
 }
 
-export default OrderDashboard;
+const mapStateToProps = (state) => {
+	return {
+		orders: state.orders
+	};
+};
+
+export default connect(mapStateToProps)(OrderDashboard);
