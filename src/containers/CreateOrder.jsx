@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { DISHES } from '../constants/constants';
 import { insertNewOrder } from '../actions/actions';
+import { v4 as uuidv4 } from 'uuid';
 
 const DishesConatiner = styled.div`
 	margin-top: 20px;
@@ -93,11 +94,26 @@ class CreateOrder extends Component {
 		return dish.price * quantity[dish.name.toLowerCase()];
 	}
 
+	getOrderRemainingTime = () => {
+		const { quantity } = this.state;
+		let remainingTime = 0;
+		DISHES.map((dish) => {
+			if ((quantity[dish.name.toLowerCase()] > 0) && dish.time > remainingTime) {
+				remainingTime = dish.time;
+			}
+		});
+		return remainingTime;
+	}
+
 	handleNewOrder = () => {
 		const { dispatch, history } = this.props;
+
 		const orderDetails = {
 			finalPrice: this.getFinalPrice(),
-			quantity: this.state.quantity
+			quantity: this.state.quantity,
+			remainingTime: this.getOrderRemainingTime(),
+			orderTime: new Date().getTime(),
+			uuid: uuidv4()
 		};
 		dispatch(insertNewOrder(orderDetails));
 		history.push('/');

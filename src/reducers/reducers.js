@@ -5,10 +5,5 @@ export const OrderStore = {
 }
 
 export default handleActions({
-    INSERT_NEW_ORDER: (state, { payload }) => {
-        return [
-            ...state,
-            payload
-        ];
-    }
+    INSERT_NEW_ORDER: (state, { payload }) => (state.orders.push(payload), state)
 }, OrderStore)
