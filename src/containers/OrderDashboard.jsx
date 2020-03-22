@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-import { OrderStore } from '../reducers/reducers';
+import { deleteOrderDetails } from '../actions/actions';
 
 const DashboardContainer = styled.div`
 	margin-top: 20px;
@@ -45,7 +45,11 @@ class OrderDashboard extends Component {
 	}
 
 	getTimer = (order) => {
-		return (order.remainingTime * 60) - (Math.floor((new Date().getTime() - new Date(order.orderTime).getTime()) / 1000));
+		const timer =  (order.remainingTime * 60) - (Math.floor((new Date().getTime() - new Date(order.orderTime).getTime()) / 1000));
+		if (timer === 0) {
+			this.props.dispatch(deleteOrderDetails(order.uuid));
+		}
+		return timer;
 	}
 
 	render() {
@@ -87,7 +91,7 @@ class OrderDashboard extends Component {
 
 const mapStateToProps = (state) => {
 	return {
-		orders: state.orders
+		orders: state
 	};
 };
 

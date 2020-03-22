@@ -3,7 +3,7 @@ export const DISHES = [
         key: "first",
         name: "Roti",
         price: 20,
-        time: "2"
+        time: "1"
     }, {
         key: "second",
         name: "Rice",
